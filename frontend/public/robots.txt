@@ -1,0 +1,13 @@
+# Allow all bots to crawl all content
+User-agent: *
+Disallow:
+
+# Disallow crawling on specific directories
+Disallow: /private/
+Disallow: /temp/
+
+# Allow specific directories
+Allow: /public/
+
+# Sitemap location (optional but recommended for SEO)
+Sitemap: https://genfile.alifmaulidanar.com/sitemap.xml
