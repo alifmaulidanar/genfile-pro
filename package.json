@@ -1,0 +1,12 @@
+{
+  "name": "genfile-pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fe": "cd frontend && npm run dev",
+    "be": "cd backend && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}
