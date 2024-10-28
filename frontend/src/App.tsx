@@ -37,7 +37,7 @@ function App() {
       setErrorMessage('');
       setProgress(0);
 
-      const response = await axios.post('http://localhost:3011/generate', {
+      const response = await axios.post(`${process.env.PROD_URL}`, {
         fileType,
         fileSize: sizeInKB,
         color: customColor,
@@ -83,28 +83,28 @@ function App() {
       setErrorMessage('File not found. Please regenerate the file.');
     }
   };
-  
+
   const handleColorChange = (color: { hex: SetStateAction<string>; }) => {
     setCustomColor(color.hex);
   };
 
   return (
-    <div className="flex justify-center items-start min-h-screen max-h-screen">
-      <Card className="w-120 my-4 p-4 max-h-screen">
+    <div className="flex items-start justify-center max-h-screen min-h-screen">
+      <Card className="max-h-screen p-4 my-4 w-120">
         <CardHeader>
-            <h1 className="text-center text-xl font-semibold md:text-2xl">GenFile Pro</h1>
-            <h2 className="text-center text-sm md:text-md font-medium">
+          <h1 className="text-xl font-semibold text-center md:text-2xl">GenFile Pro</h1>
+          <h2 className="text-sm font-medium text-center md:text-md">
             Generate Perfect Samples, Every Time.
-            </h2>
+          </h2>
         </CardHeader>
         <CardContent>
-          <p className="text-center text-sm md:text-md">
+          <p className="text-sm text-center md:text-md">
             Your ultimate tool for generating sample files in any format or size. Fast, customizable, and crafted to perfection.
           </p>
 
           <Separator className='my-8' />
 
-          <div className='grid grid-rows-1 max-h-screen'>
+          <div className='grid max-h-screen grid-rows-1'>
             <div className='grid grid-cols-3 gap-x-8'>
               {/* Choose File Type */}
               <div className="mb-4">
@@ -172,10 +172,10 @@ function App() {
             </div>
           </div>
 
-          <div className='flex flex-col w-fit my-8 items-center mx-auto'>
+          <div className='flex flex-col items-center mx-auto my-8 w-fit'>
             <Button onClick={handleGenerate}>Generate File</Button>
             <div>
-              {errorMessage && <p className="text-red-500 text-sm mt-2">{errorMessage}</p>}
+              {errorMessage && <p className="mt-2 text-sm text-red-500">{errorMessage}</p>}
             </div>
           </div>
 
@@ -183,10 +183,10 @@ function App() {
             {fileUrl && (
               <div className="relative">
                 {isGenerating && (
-                  <div className="absolute inset-0 flex flex-col gap-y-2 items-center justify-center bg-white opacity-70 z-10">
-                    <p className="text-black text-sm">Loading...</p>
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white gap-y-2 opacity-70">
+                    <p className="text-sm text-black">Loading...</p>
                     <Progress.Root
-                      className="relative overflow-hidden bg-white rounded-full w-16 h-2"
+                      className="relative w-16 h-2 overflow-hidden bg-white rounded-full"
                       style={{ transform: 'translateZ(0)' }}
                       value={progress}
                     >
@@ -199,15 +199,15 @@ function App() {
                 )}
 
                 {fileType !== 'pdf' ? (
-                  <img src={fileUrl} alt="Generated file preview for sample JPG, PNG, JPEG" className="mb-2 max-w-full max-h-32 mx-auto" />
+                  <img src={fileUrl} alt="Generated file preview for sample JPG, PNG, JPEG" className="max-w-full mx-auto mb-2 max-h-32" />
                 ) : (
-                  <embed src={fileUrl} type="application/pdf" className="mb-2 max-w-full max-h-fit mx-auto" />
+                  <embed src={fileUrl} type="application/pdf" className="max-w-full mx-auto mb-2 max-h-fit" />
                 )}
               </div>
             )}
 
             {fileUrl && !isGenerating && (
-              <Button onClick={handleDownload} className="text-white mt-2">
+              <Button onClick={handleDownload} className="mt-2 text-white">
                 Download File
               </Button>
             )}
