@@ -37,8 +37,7 @@ function App() {
       setErrorMessage('');
       setProgress(0);
 
-      // const response = await axios.post(`${process.env.PROD_URL}`, {
-      const response = await axios.post("https://genfilepro.alifmaulidanar.com/generate", {
+      const response = await axios.post(`${import.meta.env.VITE_PROD_URL}`, {
         fileType,
         fileSize: sizeInKB,
         color: customColor,
