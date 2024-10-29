@@ -70,7 +70,7 @@ app.post("/generate", async (req, res) => {
         res.json({
           fileId: fileId,
           fileName: fileName,
-          fileUrl: `http://localhost:3011/download/${fileId}`,
+          fileUrl: `http://localhost:3012/download/${fileId}`,
         });
       });
 
@@ -111,7 +111,7 @@ app.post("/generate", async (req, res) => {
       res.json({
         fileId: fileId,
         fileName: fileName,
-        fileUrl: `http://localhost:3011/download/${fileId}`,
+        fileUrl: `http://localhost:3012/download/${fileId}`,
         svgContent,
       });
     } else {
@@ -145,7 +145,7 @@ app.post("/generate", async (req, res) => {
       res.json({
         fileId: fileId,
         fileName: fileName,
-        fileUrl: `http://localhost:3011/download/${fileId}`,
+        fileUrl: `http://localhost:3012/download/${fileId}`,
       });
     }
   } catch (error) {
@@ -209,7 +209,7 @@ app.get("/download/:fileId", (req, res) => {
   });
 });
 
-const port = process.env.PORT || 3011;
+const port = process.env.PORT || 3012;
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);
 });
